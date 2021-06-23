@@ -78,10 +78,3 @@ int get_next_line(int fd, char **line)
         return (0);
     return (1);
 }
-
-int main()
-{
-    printf("%d",BUFFER_SIZE);
-    return 0;
-}
-

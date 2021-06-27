@@ -1,5 +1,7 @@
 Makefile
 test.c
+test.txt
+nextLine
 
 # Prerequisites
 *.d

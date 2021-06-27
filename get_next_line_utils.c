@@ -1,5 +1,15 @@
 #include "get_next_line.h"
 
+void printlist(t_string_list *lst)
+{
+	while (lst)
+	{
+		printf("|%s| ",lst->line);
+		lst = lst->next;
+	}
+	printf("\n");
+}
+
 int	ft_strlen_(const char *s)
 {
 	int	i;
@@ -13,22 +23,12 @@ int	ft_strlen_(const char *s)
 t_string_list	*ft_lstnew(char *content)
 {
 	t_string_list	*out;
-    int             i;
 
-    i = 0;
 	out = malloc(sizeof(t_string_list));
-	if (out == NULL)
+    if (out == NULL)
 		return NULL;
     out->size = ft_strlen_(content);
-    out->line = malloc(out->size + 1);
-    if (out->line == NULL)
-        return (NULL);
-    while (content[i])
-    {
-        out->line[i] = content[i];
-        i++;
-    }
-    out->line[i] = 0;
+    out->line = ft_strdup_(content);
 	out->next = NULL;
 	return (out);
 }
@@ -57,7 +57,7 @@ void ft_lstclear(t_string_list **lst)
 		p = *lst;
 		*lst = (*lst)->next;
 		free(p->line);
-		free(p);
+		p = NULL;
 	}
 	free(*lst);
 }
@@ -67,9 +67,12 @@ int	ft_lstadd_back(t_string_list **lst, char *line)
 	t_string_list	*save;
     t_string_list   *new;
 
+    
     new = ft_lstnew(line);
     if(new == NULL)
+    {
         return (0);
+    }  
 	if(*lst == NULL)
 	{
 		*lst = new;
@@ -88,20 +91,24 @@ int     ft_concat_strings(t_string_list *lst, char **buff)
     int i;
     int j;
     
-    if (buff == NULL || lst == NULL)
+	if (lst == NULL)
+		return (0);
+    if (buff == NULL)
         return (-1);
     size = ft_string_size(lst);
     *buff = malloc(size + 1);
     if (*buff == NULL)
         return (-1);
+    (*buff)[size] = 0;
     i = 0;
     while (lst)
     {
         j = 0;
-        while (*(lst->line))
+        while (lst->line[j])
             (*buff)[i++] = lst->line[j++];
         lst = lst->next;
     }
     (*buff)[i] = 0;
     return (size);
 }
+

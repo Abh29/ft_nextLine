@@ -18,12 +18,12 @@ typedef struct s_list
 int             get_next_line(int fd, char **line);
 char            *ft_strdup_(const char *s1);
 char	        *ft_strchr_(const char *s, int c);
-int          ft_strlen_(const char *s);
+int          	ft_strlen_(const char *s);
 t_string_list   *ft_lstnew(char *content);
 int             ft_string_size(t_string_list *lst);
 void            ft_lstclear(t_string_list **lst);
-int            ft_lstadd_back(t_string_list **lst, char *line);
+int            	ft_lstadd_back(t_string_list **lst, char *line);
 int             ft_concat_strings(t_string_list *lst, char **buff);
-
+void			printlist(t_string_list *lst);
 
 #endif

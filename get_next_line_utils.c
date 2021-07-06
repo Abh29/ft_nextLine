@@ -64,7 +64,6 @@ int	ft_lstadd_back(t_string_list **lst, char *line)
 
 int	ft_concat_strings(t_string_list *lst, char **buff)
 {
-	int	size;
 	int	i;
 	int	j;
 
@@ -76,8 +75,7 @@ int	ft_concat_strings(t_string_list *lst, char **buff)
 		**buff = 0;
 		return (0);
 	}
-	size = ft_string_size(lst);
-	*buff = malloc(size + 1);
+	*buff = malloc(ft_string_size(lst) + 1);
 	if (*buff == NULL)
 		return (-1);
 	i = 0;
@@ -89,5 +87,5 @@ int	ft_concat_strings(t_string_list *lst, char **buff)
 		lst = lst->next;
 	}
 	(*buff)[i] = 0;
-	return (size);
+	return (i);
 }

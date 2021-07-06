@@ -3,7 +3,6 @@
 # define GET_NEXT_LINE_H
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 typedef struct s_list
 {
 	char			*line;
